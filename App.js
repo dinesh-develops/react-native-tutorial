@@ -1,25 +1,17 @@
 import React,{useState} from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button,TextInput  } from 'react-native';
 import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
 const App = () => {
-  const[person,setPerson]=useState({name:"Dinesh",age:"22"})
-  const name=person.name
-  //To preserve the prev data and update only one value
-  function setPersonData(){
-    setPerson((prevState) => ({
-      ...prevState,
-      name:"Dhanush"
-  }));
-  }
+  const[name,setName]=useState("")
+  const[age,setAge]=useState("")
+
   return (
     <View style={styles.container}>
-      <Text>My Name is {person.name}</Text>
-      <Text>My age is {person.age}</Text>
-      {/* Always Button has to be enclosed inside View */}
-      <View style={styles.buttonContainer}>
-        <Button title='Click Me' onPress={setPersonData} />  
-      </View>
+      <TextInput style={styles.input} placeholder='ex.John' onChangeText={val=>setName(val)} />
+      <TextInput style={styles.input} placeholder='20' keyboardType='numeric' onChangeText={val=>setAge(val)}/>
+      <Text>My Name is {name}</Text>
+      <Text>My age is {age}</Text>
     </View>
   );
 };
@@ -29,19 +21,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  header:{
-    backgroundColor:'green',
-    padding:20
-  },
-  boldText:{
-    fontWeight:'bold',
-  },
-  body:{
-    alignItems:'center',
-    backgroundColor:'pink'
-  },
-  buttonContainer:{
-    backgroundColor:'black'
+  input:{
+    borderColor:'black',
+    borderWidth:1,
+    height:40,
+    margin:10,
+    width:300,
+    padding:10
   }
 });
 export default App;
