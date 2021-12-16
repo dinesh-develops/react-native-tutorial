@@ -5,6 +5,7 @@ import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNat
 const App = () => {
   const[person,setPerson]=useState({name:"Dinesh",age:"22"})
   const name=person.name
+  //To preserve the prev data and update only one value
   function setPersonData(){
     setPerson((prevState) => ({
       ...prevState,
@@ -15,6 +16,7 @@ const App = () => {
     <View style={styles.container}>
       <Text>My Name is {person.name}</Text>
       <Text>My age is {person.age}</Text>
+      {/* Always Button has to be enclosed inside View */}
       <View style={styles.buttonContainer}>
         <Button title='Click Me' onPress={setPersonData} />  
       </View>
