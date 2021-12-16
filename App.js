@@ -1,16 +1,22 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React,{useState} from 'react';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
 const App = () => {
+  const[person,setPerson]=useState({name:"Dinesh",age:"22"})
+  const name=person.name
+  function setPersonData(){
+    setPerson((prevState) => ({
+      ...prevState,
+      name:"Dhanush"
+  }));
+  }
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.boldText}>Hello World</Text>
-      </View>
-      <View style={styles.body}>
-        <Text style={styles.boldText}>Dinesh <Text>S</Text></Text>
-        <Text>AK</Text>
+      <Text>My Name is {person.name}</Text>
+      <Text>My age is {person.age}</Text>
+      <View style={styles.buttonContainer}>
+        <Button title='Click Me' onPress={setPersonData} />  
       </View>
     </View>
   );
@@ -31,6 +37,9 @@ const styles = StyleSheet.create({
   body:{
     alignItems:'center',
     backgroundColor:'pink'
+  },
+  buttonContainer:{
+    backgroundColor:'black'
   }
 });
 export default App;
