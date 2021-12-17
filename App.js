@@ -1,35 +1,48 @@
-import React,{useState} from 'react';
-import { View, Text, StyleSheet,ScrollView, Button,TextInput  } from 'react-native';
-import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
+import React, { useState } from 'react';
+import { StyleSheet, TouchableOpacity, Text, View, FlatList } from 'react-native';
 
-const App = () => {
-  const[people,setPeople]=useState([
-    {name:"Dinesh",key:1},
-    {name:"Dhanush",key:2},
-    {name:"SivaShankar",key:3},
-    {name:"Ajaye",key:4},
-    {name:"Venkat",key:5},
-    {name:"Dinesh",key:6},
-    {name:"Dhanush",key:7},
-    {name:"SivaShankar",key:8},
-    {name:"Ajaye",key:9},
-    {name:"Venkat",key:10},
-  ])
+export default function App() {
+  const [people, setPeople] = useState([
+    { name: 'Dinensh', id: '1' },
+    { name: 'dw', id: '2' },
+    { name: 'www', id: '3' },
+    { name: 'luiwcwgi', id: '4' },
+    { name: 'peach', id: '5' },
+    { name: 'toawcwwwc', id: '6' },
+    { name: 'bowser', id: '7' },
+    { name: 'cwwvw', id: '8' },
+    { name: 'yoshi', id: '9' },
+    { name: 'mavwwwvrio', id: '10' },
+    { name: 'luigi', id: '11' },
+    { name: 'peac wwch', id: '12' },
+    { name: 'toawwwccd', id: '13' },
+    { name: 'bowser', id: '14' },
+  ]);
+  const pressHandler=(id)=>{
+    console.log("remove"+id+people.name);
+    console.log(people)
+    setPeople((prevPeople)=>{
+      return prevPeople.filter(person=>person.id !=id)
+    })
+  }
 
   return (
     <View style={styles.container}>
-      <ScrollView>
-        {people.map((item)=>{
-          return(
-            <View key={item.key}>
-              <Text style={styles.item}>{item.name}</Text>
-            </View>
-          )
-        })}
-      </ScrollView>
+
+      <FlatList 
+        keyExtractor={(item) => item.id} 
+        data={people} 
+        renderItem={({ item }) => ( 
+          <TouchableOpacity onPress={()=>pressHandler(item.id)}>
+            <Text style={styles.item}>{item.name}</Text>
+          </TouchableOpacity>
+        )}
+      />
+
     </View>
   );
-};
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -46,4 +59,3 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
 });
-export default App;
